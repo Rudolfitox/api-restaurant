@@ -1,36 +1,24 @@
-import { Sequelize } from "sequelize";
+import { Sequelize,DataTypes } from "sequelize";
 import { sequelize } from '../database/database';
-import Categoria from './Categoria';
 
-
-const Restaurant = sequelize.define('restaurant',{
+export const Restaurant = sequelize.define('restaurant',{
     slug:{
-        type:Sequelize.INTEGER,
+        type:DataTypes.INTEGER,
         primaryKey:true
     },
     description:{
-        type:Sequelize.TEXT
+        type:DataTypes.TEXT
     },
     logo:{
-        type:Sequelize.TEXT
+        type:DataTypes.TEXT
     },
     rating:{
-        type:Sequelize.DECIMAL
-    },
-    food_type:{
-        type:Sequelize.INTEGER
+        type:DataTypes.DECIMAL
     },
     name:{
-        type:Sequelize.TEXT
+        type:DataTypes.TEXT
     }
 },
 {
     timestamps:false
 });
-
-Restaurant.hasMany(Categoria,{
-    foreingKey:'food_type'
-})
-
-
-export default Restaurant;

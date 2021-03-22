@@ -1,16 +1,23 @@
 import { Sequelize,DataTypes } from "sequelize";
 import { sequelize } from '../database/database';
 
-export const Categoria = sequelize.define('categoria',{
+export const Review = sequelize.define('review',{
         slug:{
             type:DataTypes.INTEGER,
             primaryKey:true
         },
-        name:{
+        comments:{
             type:DataTypes.TEXT
-        }
+        },
+        rating:{
+            type:DataTypes.DECIMAL
+        },
+        email:{
+            type:DataTypes.TEXT
+        } 
     },
     {
         timestamps:false
     }
-);
+)
+
