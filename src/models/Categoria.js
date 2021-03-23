@@ -1,9 +1,9 @@
 import { Sequelize,DataTypes } from "sequelize";
 import { sequelize } from '../database/database';
 
-export const Categoria = sequelize.define('categoria',{
+export const Categoria = sequelize.define('categorie',{
         slug:{
-            type:DataTypes.INTEGER,
+            type:Sequelize.INTEGER,
             primaryKey:true
         },
         name:{

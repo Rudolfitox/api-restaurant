@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS reviews(
 
 CREATE TABLE IF NOT EXISTS restaurant_category(
     restaurantId INTEGER REFERENCES restaurants(slug),
-    categoryId INTEGER REFERENCES categories (slug)
+    categoryId INTEGER REFERENCES categories(slug)
 );
 
 CREATE TABLE IF NOT EXISTS restaurant_review(

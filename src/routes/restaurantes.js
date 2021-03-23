@@ -1,5 +1,13 @@
 import {Router} from 'express';
-import { createRestaurant, deleteRestaurant, getOneRestaurant, getRestaurants, updateRestaurant } from '../controllers/project.controller';
+import { 
+         createRestaurant, 
+         deleteRestaurant, 
+         getOneRestaurant, 
+         getRestaurants, 
+         updateRestaurant 
+        } from '../controllers/restaurant.controller';
+
+
 const router = Router();
 
 router.post('/',createRestaurant);
