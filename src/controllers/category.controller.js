@@ -27,9 +27,9 @@ export async function getCategories(req,res) {
     try {
         const categories = await Categoria.findAll({
             attributes:['slug','name'],
-            order:[
-                ['slug','DESC']
-            ]
+            // order:[
+            //     ['slug','DESC']
+            // ]
         });
 
         res.json({categories})        
