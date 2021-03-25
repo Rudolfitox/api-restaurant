@@ -15,6 +15,7 @@
     "@babel/polyfill": "^7.12.1",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
+    "multiparty": "^4.2.2",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.6.0"
