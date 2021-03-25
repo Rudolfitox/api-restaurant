@@ -1,7 +1,8 @@
-import { Restaurant } from "../models/index";
+import { Categoria, Restaurant } from "../models/index";
 
 export async function createRestaurant(req,res) {
-    const {name,description,logo,rating} = req.body;
+    const {name,description,logo,rating,categorias} = req.body;
+   
     try {
         let newRestaurant = await Restaurant.create({
             name,
@@ -10,6 +11,10 @@ export async function createRestaurant(req,res) {
             rating
             },{fields:['name','description','logo','rating']
         });
+
+        categorias.forEach(async(ca) => {
+            const categoria = await Categoria.findByPk(ca.id)
+        })
         
         res.json({
             message:'Restaurant create succesfully',
