@@ -1,4 +1,4 @@
-import { Restaurant } from "../models/Restaurant";
+import { Restaurant } from "../models/index";
 
 export async function createRestaurant(req,res) {
     const {name,description,logo,rating} = req.body;

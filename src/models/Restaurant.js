@@ -1,7 +1,7 @@
 import { Sequelize,DataTypes } from "sequelize";
 import { sequelize } from '../database/database';
 
-export const Restaurant = sequelize.define('restaurant',{
+export const Restaurant = sequelize.define('restaurante',{
     slug:{
         type:Sequelize.INTEGER,
         primaryKey:true
