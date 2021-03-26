@@ -37,12 +37,12 @@ export async function createRestaurant(req,res) {
         });
 
     }catch (error) {
-        throw error
-        // console.log(JSON.stringify(error));
-        // res.status(500).json({
-        //     message:'Something goes wrong',
-        //     data:[]
-        // });
+        // throw error
+        console.log(JSON.stringify(error));
+        res.status(500).json({
+            message:'Something goes wrong',
+            data:[]
+        });
     }
     // console.log(req.body);
     // res.send('received');
@@ -51,13 +51,25 @@ export async function createRestaurant(req,res) {
 export async function getRestaurants(req,res) {
     
     try {
-        const restaurants = await Restaurant.findAll();
+        const restaurants = await Restaurant.findAll({
+            include:[{
+                model:Categoria,
+                as:'categorias',
+                required:false,
+                attributes:['categoriaid','name'],
+                through:{
+                    model:RestaurantCategoria,
+                    as:'restaurantCategorias'
+                }
+            }]
+        });
 
         res.json({
             data:restaurants
         })        
     } catch (error) {
-        console.log(JSON.stringify(error));
+        throw error;
+        //console.log(JSON.stringify(error));
     }
 
 }
