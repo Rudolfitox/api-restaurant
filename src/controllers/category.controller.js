@@ -26,7 +26,7 @@ export async function getCategories(req,res) {
     
     try {
         const categories = await Categoria.findAll({
-            attributes:['slug','name'],
+            attributes:['categoriaid','name'],
             // order:[
             //     ['slug','DESC']
             // ]

@@ -1,8 +1,8 @@
 import { Sequelize,DataTypes } from "sequelize";
 import { sequelize } from '../database/database';
 
-export const Review = sequelize.define('resenia',{
-        reseniaId:{
+export const Review = sequelize.define('resenias',{
+        reseniaid:{
             type:DataTypes.INTEGER,
             primaryKey:true
         },

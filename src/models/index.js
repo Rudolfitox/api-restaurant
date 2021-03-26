@@ -3,8 +3,8 @@ import {Categoria} from '../models/Categoria';
 import {Review} from '../models/Review';
 import { RestaurantCategoria } from './RestaurantCategoria';
 
-Restaurant.belongsToMany(Categoria,{through:RestaurantCategoria});
-Categoria.belongsToMany(Restaurant,{through:RestaurantCategoria});
+Restaurant.belongsToMany(Categoria,{through:RestaurantCategoria,foreignKey:'restauranteid'});
+Categoria.belongsToMany(Restaurant,{through:RestaurantCategoria,foreignKey:'categoriaid'});
 
 export {
     Restaurant,

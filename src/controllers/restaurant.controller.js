@@ -1,9 +1,11 @@
 import { Categoria, Restaurant, RestaurantCategoria } from "../models/index";
 
 export async function createRestaurant(req,res) {
-    const {name,description,logo,rating,categorias} = req.body;
-   
+    
     try {
+
+        const {name,description,logo,rating,categorias} = req.body;
+
         let newRestaurant = await Restaurant.create({
             name,
             description,
@@ -18,23 +20,25 @@ export async function createRestaurant(req,res) {
             if(!categoria){
                 return res.status(400);
             }
-        
-        })
-        
-        const rc = {
-            restaurantId:newRestaurant.restaurantId,
-            categoriaId:ca.id
-        }
 
-        const savedRestauranteCategoria = 
-                await RestaurantCategoria.create(rc,{fields:['restaurantId','categoriaId']})
+            const rc = { restauranteid:newRestaurant.restauranteid,categoriaid:ca.id }
+
+            const savedRestauranteCategoria = 
+                    await RestaurantCategoria.create(rc,
+                        {
+                            fields:['restauranteid','categoriaid']
+                        }
+                    )
+        });
 
         res.json({
             message:'Restaurant create succesfully',
             data:newRestaurant
-        })
+        });
+
     }catch (error) {
-        console.log(JSON.stringify(error));
+        throw error
+        // console.log(JSON.stringify(error));
         // res.status(500).json({
         //     message:'Something goes wrong',
         //     data:[]
