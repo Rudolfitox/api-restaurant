@@ -1,4 +1,4 @@
-import { Categoria, Restaurant } from "../models/index";
+import { Categoria, Restaurant, RestaurantCategoria } from "../models/index";
 
 export async function createRestaurant(req,res) {
     const {name,description,logo,rating,categorias} = req.body;
@@ -14,8 +14,21 @@ export async function createRestaurant(req,res) {
 
         categorias.forEach(async(ca) => {
             const categoria = await Categoria.findByPk(ca.id)
+            
+            if(!categoria){
+                return res.status(400);
+            }
+        
         })
         
+        const rc = {
+            restaurantId:newRestaurant.restaurantId,
+            categoriaId:ca.id
+        }
+
+        const savedRestauranteCategoria = 
+                await RestaurantCategoria.create(rc,{fields:['restaurantId','categoriaId']})
+
         res.json({
             message:'Restaurant create succesfully',
             data:newRestaurant

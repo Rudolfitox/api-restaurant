@@ -1,13 +1,14 @@
 import {Restaurant} from '../models/Restaurant';
 import {Categoria} from '../models/Categoria';
 import {Review} from '../models/Review';
-import { Restaurant_Categoria } from './RestaurantCategoria';
+import { RestaurantCategoria } from './RestaurantCategoria';
 
-Restaurant.belongsToMany(Categoria,{through:Restaurant_Categoria});
-Categoria.belongsToMany(Restaurant,{through:Restaurant_Categoria});
+Restaurant.belongsToMany(Categoria,{through:RestaurantCategoria});
+Categoria.belongsToMany(Restaurant,{through:RestaurantCategoria});
 
 export {
     Restaurant,
     Categoria,
-    Review
+    Review,
+    RestaurantCategoria
 }

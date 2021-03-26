@@ -2,7 +2,7 @@ import { Sequelize,DataTypes } from "sequelize";
 import { sequelize } from '../database/database';
 
 export const Restaurant = sequelize.define('restaurante',{
-    slug:{
+    restaurantId:{
         type:Sequelize.INTEGER,
         primaryKey:true
     },
