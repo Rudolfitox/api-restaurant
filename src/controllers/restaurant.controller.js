@@ -38,7 +38,7 @@ export async function createRestaurant(req,res) {
 
     }catch (error) {
         // throw error
-        console.log(JSON.stringify(error));
+        //console.log(JSON.stringify(error));
         res.status(500).json({
             message:'Something goes wrong',
             data:[]
