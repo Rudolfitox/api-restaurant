@@ -77,12 +77,22 @@ export async function getRestaurants(req,res) {
 export async function getOneRestaurant(req,res) {
     
     try {
-        const {id} = req.params;
+        const { id } = req.params;
 
-        const restaurant = await Restaurant.findOne(
-            {
+        const restaurant = await Restaurant.findOne({
+                include:[{
+                    model:Categoria,
+                    as:'categorias',
+                    required:false,
+                    attributes:['categoriaid','name'],
+                    through:{
+                        model:RestaurantCategoria,
+                        as:'restaurantCategorias'
+                    }
+
+                }],
                 where:{
-                    slug:id
+                    restauranteid:id
                 }
             });
 
