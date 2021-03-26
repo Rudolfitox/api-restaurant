@@ -125,3 +125,49 @@ export async function deleteResenia(req,res) {
         console.log(JSON.stringify(error));
     }
 }
+
+export async function updateResenia(req,res) {
+
+    try {
+        const {id} = req.params;
+        const { comments, rating, email, restaurantes } = req.body;
+
+        const resenia = await Review.findByPk(id);
+        
+        const restaurantes_r = await resenia.getRestaurantes();
+        resenia.removeRestaurantes(restaurantes_r);
+
+        restaurantes.forEach(async (re) => {
+            const rre = { 
+                reseniaid:resenia.reseniaid,
+                restauranteid:re.id
+            };
+
+            const savedRestauranteResenia = await RestaurantResenia.create(rre,{
+                    fields:['restauranteid','categoriaid']
+                }
+            );
+
+        });
+
+        const updatedResenia = await Review.update(
+            {
+                comments,
+                rating,
+                email
+            },
+            {
+                where:{reseniaid:id}
+            }
+        )
+
+        return res.json({
+            message:'Resenia updated succesfully',
+            data:updatedResenia
+        })
+        
+    } catch (error) {
+        throw error;
+        console.log(JSON.stringify(error));
+    }   
+}
