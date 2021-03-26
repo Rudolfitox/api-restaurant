@@ -144,7 +144,7 @@ export async function updateResenia(req,res) {
             };
 
             const savedRestauranteResenia = await RestaurantResenia.create(rre,{
-                    fields:['restauranteid','categoriaid']
+                    fields:['reseniaid','restauranteid']
                 }
             );
 
