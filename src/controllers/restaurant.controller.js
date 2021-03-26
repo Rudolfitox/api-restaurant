@@ -107,9 +107,15 @@ export async function deleteRestaurant(req,res) {
     const {id} = req.params;
 
     try {
+
+        const restaurante = await Restaurant.findByPk(id);
+
+        const categorias = await restaurante.getCategorias();
+        restaurante.removeCategorias(categorias);
+
         const deleteRowCount = await Restaurant.destroy({
             where:{
-                slug:id
+                restauranteid:id
             }
         }); 
         
@@ -119,6 +125,7 @@ export async function deleteRestaurant(req,res) {
         });
 
     } catch (error) {
+        throw error;
         console.log(JSON.stringify(error));
     }
 }
@@ -127,32 +134,35 @@ export async function updateRestaurant(req,res) {
 
     try {
         const {id} = req.params;
-        const { name,description,logo,rating } = req.body;
+        const { name,description,logo,rating,categorias } = req.body;
 
-        const restaurants = await Restaurant.findAll({
-            attributes:["slug","name", "description", "logo","rating"],
-            where:{
-                slug:id
-            }
+        const restaurante = await Restaurant.findByPk(id);
+        
+        const categorias_r = await restaurante.getCategorias();
+        restaurante.removeCategorias(categorias_r);
+
+        categorias.forEach(async (ca) => {
+            const rc = { 
+                restauranteid:restaurante.restauranteid,
+                categoriaid:ca.id 
+            };
+
+            const savedRestauranteCategoria = await RestaurantCategoria.create(rc,{
+                    fields:['restauranteid','categoriaid']
+                }
+            );
+
         });
 
-        if(restaurants.length > 0) {
-            restaurants.forEach(async restaurant => {
-                await restaurant.update({
-                    name,
-                    description,
-                    logo,
-                    rating
-                })
-            })
-        }
+        const updatedRestaurant = await Restaurant.update({name,description,logo,rating},{where:{restauranteid:id}})
 
         return res.json({
             message:'Restaurant updated succesfully',
-            data:restaurants
+            data:updatedRestaurant
         })
         
     } catch (error) {
+        throw error;
         console.log(JSON.stringify(error));
     }
 
