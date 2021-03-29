@@ -74,3 +74,80 @@
 	"rating":4.4,
 	"categorias":[{"id":1},{"id":2}]
 }
+
+
+# Endpoints Categorías
+
+# Crear una categoría POST
+http://localhost:3000/api/categorias
+
+# Cuerpo json para crear
+{
+	"name":"Italiana"
+}
+
+# Obtener categorías GET
+http://localhost:3000/api/categorias
+
+# Obtener (get) y borrar una categoría (delete)
+http://localhost:3000/api/categorias/1
+
+# Actualizar una categoria (update)
+http://localhost:3000/api/categorias/1
+
+# Cuerpo json para actualizar
+{
+	"name":"Italiana"
+}
+
+
+# Endpoints para restaurantes
+
+# Crear una categoría POST
+http://localhost:3000/api/restaurants
+
+# Cuerpo json para crear restaurantes 
+
+{
+	"name":"Tortas del paseo",
+	"description":"Descripcion test",
+	"logo":"logo test",
+	"rating":4.4,
+	"categorias":[{"id":1},{"id":2}]
+}
+
+# Obtener los restaurantes GET
+http://localhost:3000/api/restaurants
+
+# Obtener (get) un restaurante y eliminar (delete) 
+http://localhost:3000/api/restaurants/3
+
+
+# Crear una resenia POST
+http://localhost:3000/api/resenias
+
+# Cuerpo json para una reseña
+{
+	"comments":"Tortas buenas buenas",
+	"rating":5.5,
+	"email":"tortas@gmail.com",
+	"restaurantes":[{"id":1},{"id":2}]
+}
+
+# Obtener reseñas 
+http://localhost:3000/api/resenias
+
+# Obtener(GET) una reseña y borrar(DELETE) una reseña
+http://localhost:3000/api/resenias/3
+
+# Actualizar(PUT) una reseña
+http://localhost:3000/api/resenias/3
+
+# Cuerpo json para actualizar 
+{
+	"comments":"Tortas de la esquina",
+	"rating":5.5,
+	"email":"tortasRegistro@gmail.com",
+	"restaurantes":[{"id":1},{"id":2}]
+}
+
